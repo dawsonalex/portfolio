@@ -1,5 +1,10 @@
-baseURL = "http://example.org/"
+baseURL = "."
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Alex Dawson - Portfolio"
 
-theme="portfolio-theme"
+theme = "portfolio-theme"
+
+[params]
+    AuthorName = "Alex Dawson"
+    GitHubUser = "dawsonalex"
+    projectsurl = ""
