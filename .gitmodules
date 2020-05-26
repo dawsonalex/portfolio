@@ -1,0 +1,3 @@
+[submodule "themes/portfolio-theme"]
+	path = themes/portfolio-theme
+	url = git@github.com:dawsonalex/portfolio-theme.git
