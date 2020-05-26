@@ -1,0 +1,24 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Alex Dawsons portfolio - built using Hugo.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawsonalex/dawsonalex.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "blog",
+    "hugo"
+  ],
+  "author": "Alex Dawson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dawsonalex/dawsonalex.github.io/issues"
+  },
+  "homepage": "https://github.com/dawsonalex/dawsonalex.github.io#readme"
+}
