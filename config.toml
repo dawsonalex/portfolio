@@ -7,4 +7,4 @@ theme = "portfolio-theme"
 [params]
     AuthorName = "Alex Dawson"
     GitHubUser = "dawsonalex"
-    projectsurl = ""
+    projectsURL = ""
