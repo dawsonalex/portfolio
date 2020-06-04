@@ -9,4 +9,7 @@ theme = "portfolio-theme"
     TwitterUser = "_dawson_alex"
     LinkedInUser = "dawsonal"
 
+    summary = """Alex Dawson is a software engineer based in Nottinghamshire, UK. 
+    In time, he wants to try his hand at everything related to development, but right now he’s working with Java, and Oracle databases."""
+
     projectsURL = "" # URL to projects JSON
