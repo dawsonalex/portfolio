@@ -6,4 +6,7 @@ theme = "portfolio-theme"
 [params]
     AuthorName = "Alex Dawson"
     GitHubUser = "dawsonalex"
-    projectsURL = ""
+    TwitterUser = "_dawson_alex"
+    LinkedInUser = "dawsonal"
+
+    projectsURL = "" # URL to projects JSON
