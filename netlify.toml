@@ -9,4 +9,4 @@
 [[headers]]
     for = "/*"
     [headers.values]
-    Access-Control-Allow-Origin = "*.dawsona.co.uk"
+    Access-Control-Allow-Origin = "https://dawsona.co.uk"
