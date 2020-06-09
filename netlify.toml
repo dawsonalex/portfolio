@@ -7,9 +7,4 @@
     HUGO_VERSION = "0.71.1"
 
 [context.branch-deploy]
-    command = "sed -i s/SUBDOMAIN_PLACEHOLDER/${URL}\./g netlify.toml && Hugo --gc --minify"
-
-[[headers]]
-    for = "/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "https://SUBDOMAIN_PLACEHOLDERdawsona.co.uk"
+    command = 'hugo --gc --minify -b https://$BRANCH.dawsona.co.uk' 
