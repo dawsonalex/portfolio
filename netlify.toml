@@ -7,4 +7,4 @@
     HUGO_VERSION = "0.71.1"
 
 [context.branch-deploy]
-    command = 'echo $BRANCH.URL && hugo --gc --minify -b $BRANCH.$URL' 
+    command = 'echo $BRANCH.$URL && hugo --gc --minify -b $BRANCH.$URL' 
