@@ -1,15 +1,3 @@
 languageCode = "en-us"
 title = "Alex Dawson - Portfolio"
-
 theme = "portfolio-theme"
-
-[params]
-    AuthorName = "Alex Dawson"
-    GitHubUser = "dawsonalex"
-    TwitterUser = "_dawson_alex"
-    LinkedInUser = "dawsonal"
-
-    summary = """I am a software engineer based in Nottinghamshire, UK. 
-    Right now I'm working with Java, and Oracle databases, but I also like hacking about in Golang and JavaScript in my spare time."""
-
-    projectsURL = "" # URL to projects JSON
