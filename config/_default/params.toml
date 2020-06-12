@@ -6,7 +6,7 @@ subtitle = "Full Stack Developer"
 contact_links = [
     {icon = "twitter", link = "https://twitter.com/_dawsona_alex"},
     {icon = "github", link = "https://github.com/dawsonalex"},
-    {icon = "twitter", link = "https://linkedin.com/in/dawsonal"}
+    {icon = "linkedin", link = "https://linkedin.com/in/dawsonal"}
 ]
 
 # URL to get project JSON on build
