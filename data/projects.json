@@ -1,15 +1,15 @@
 [
     {
-        "name" : "portfolio-theme",
-        "description" : "A Hugo theme for my portfolio.",
+        "name" : "image-rest",
+        "description" : "A REST API and file server for sending images.",
         "language" : {
-            "name" : "CSS",
-            "colour" : "#563d7c"
+            "name" : "Go",
+            "colour" : "#00ADD8"
         },
         "links" : [
             {
                 "text" : "Code",
-                "URL" : "https://github.com/dawsonalex/portfolio-theme"
+                "URL" : "https://github.com/dawsonalex/image-rest"
             }
         ]
     },
@@ -28,6 +28,20 @@
             {
                 "text" : "Demo",
                 "URL" : "https://dawsonalex.github.io/arbi/"
+            }
+        ]
+    },
+    {
+        "name" : "portfolio-theme",
+        "description" : "A Hugo theme for my portfolio.",
+        "language" : {
+            "name" : "CSS",
+            "colour" : "#563d7c"
+        },
+        "links" : [
+            {
+                "text" : "Code",
+                "URL" : "https://github.com/dawsonalex/portfolio-theme"
             }
         ]
     },
