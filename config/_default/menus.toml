@@ -7,10 +7,5 @@
 
 [[header]]
     name = "Projects"
-    url = "/projects/"
-    weight = 10
-
-[[header]]
-    name = "Tags"
-    url = "/tags/"
+    url = "https://github.com/dawsonalex?tab=repositories"
     weight = 10
