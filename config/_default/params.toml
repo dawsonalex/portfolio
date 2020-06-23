@@ -1,0 +1,14 @@
+# Site author
+author = "Alex Dawson"
+subtitle = "Full Stack Developer"
+
+# list of links for external site accounts
+contact_links = [
+    {icon = "twitter", link = "https://twitter.com/_dawsona_alex"},
+    {icon = "github", link = "https://github.com/dawsonalex"},
+    {icon = "linkedin", link = "https://linkedin.com/in/dawsonal"},
+    {icon = "rss", link = "/index.xml"}
+]
+
+# URL to get project JSON on build
+projectsURL = ""

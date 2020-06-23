@@ -1,0 +1,11 @@
+# Navigation links, the menu at the top of all pages has the name "header"
+
+[[header]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+
+[[header]]
+    name = "Projects"
+    url = "https://github.com/dawsonalex?tab=repositories"
+    weight = 10
