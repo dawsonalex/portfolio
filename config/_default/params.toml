@@ -2,6 +2,8 @@
 author = "Alex Dawson"
 subtitle = "Full Stack Developer"
 
+description="A collection of posts and project pieces from software engineer Alex Dawson"
+
 # list of links for external site accounts
 contact_links = [
     {icon = "twitter", link = "https://twitter.com/_dawson_alex"},
