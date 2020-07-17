@@ -19,3 +19,7 @@
     [headers.values]
     # cache for one month
     Cache-Control="public, max-age=2628002"
+
+    for="/site.webmanifest"
+    [headers.values]
+    Content-Type="application/manifest+json"
