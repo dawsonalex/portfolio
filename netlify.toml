@@ -15,7 +15,7 @@
     command = 'hugo --gc --minify -b https://$BRANCH.dawsona.co.uk' 
 
 [[headers]]
-    for="/fonts/*"
+    for="*.woff2"
     [headers.values]
     # cache for one month
     Cache-Control="public, max-age=2628002"
