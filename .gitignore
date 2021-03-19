@@ -103,6 +103,9 @@ dist
 # DynamoDB Local files
 .dynamodb/
 
+# Intellij project settings
+.idea
+
 # TernJS port file
 .tern-port
 
