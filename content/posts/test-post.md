@@ -2,7 +2,7 @@
 title: Test Post
 author: Alex Dawson
 date: 2021-03-25T17:25:56.685Z
-draft: true
+draft: false
 type: post
 tags:
   - netlify
