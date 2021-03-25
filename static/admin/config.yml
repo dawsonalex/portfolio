@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+
+media_folder: "static/img"
+public_folder: "/img"
+
+collections:
+  - name: "blog"
+    label: "Alex Dawson / Portfolio"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Author", name: "author", widget: "string", default: "Alex Dawson"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - {label: "Type", name: "type", widget: "hidden", default: "post"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Body", name: "body", widget: "markdown"}
