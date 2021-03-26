@@ -1,5 +1,5 @@
 ---
-title: Setting up Netlify CMS for posting anywhere
+title: Setting up Netlify CMS for Posting Anywhere
 author: Alex Dawson
 date: 2021-03-26T09:56:52.909Z
 draft: true
