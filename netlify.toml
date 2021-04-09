@@ -1,6 +1,6 @@
 [build]
     publish = "public"
-    command = "hugo --gc --minify"
+    command = "make production"
     #functions = "functions"
 
 [[redirects]]
@@ -9,18 +9,7 @@
 	status = 404
 
 [build.environment]
-    HUGO_VERSION = "0.71.1"
+    HUGO_VERSION = "0.82.0"
 
 [context.branch-deploy]
-    command = 'hugo --gc --minify -b https://$BRANCH.dawsona.co.uk' 
-
-[[headers]]
-    for="/fonts/*"
-    [headers.values]
-    # cache for one month
-    Cache-Control="public, max-age=2628002"
-    
-[[headers]]
-    for="/site.webmanifest"
-    [headers.values]
-    Content-Type="application/manifest+json"
+    command = 'make deploy_preview BRANCH=$BRANCH'
