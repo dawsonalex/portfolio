@@ -1,7 +1,7 @@
 /fonts/*
     # cache for one month
-    Cache-Control="public, max-age=2628002"
+    Cache-Control: public, max-age=2628002
     
 /site.webmanifest
-    Content-Type="application/manifest+json"
+    Content-Type: application/manifest+json
 
