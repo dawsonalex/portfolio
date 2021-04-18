@@ -4,4 +4,4 @@ production:
 	hugo --gc --minify && cp headers/common/headers public/_headers
 
 deploy_preview:
-	hugo --gc --minify -b https://$(BRANCH).dawsona.co.uk && cp headers/common/headers public/_headers && cat headers/preview_deploy/headers >> public/_headers
+	hugo --gc --environment staging-local --minify -b https://$(BRANCH).dawsona.co.uk && cp headers/common/headers public/_headers && cat headers/preview_deploy/headers >> public/_headers
