@@ -1,1 +1,1 @@
-baseURL = "" # Leaving baseURL blank lets us read the HTML file and load assets from it too.
+buildDrafts=true
