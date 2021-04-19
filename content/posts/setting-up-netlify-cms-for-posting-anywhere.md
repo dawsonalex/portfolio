@@ -9,7 +9,7 @@ tags:
 ---
 {{< lead >}}
 
-Setting up a blog can be fun, especially if you're desiging and writing the site yourself. But I usually get put off from ever writing anything because I have ideas for posts when I'm away from laptop or PC, and writing notes on my phone is okay until I forget where I've put them. Here's how I've set up Netlify CMS with my Hugo site, so I can create drafts or full posts anywhere I have a web browser and internet connection.
+Setting up a blog can be fun, especially if you're desiging and writing the site yourself. But I usually get put off from ever writing anything because I have ideas for posts when I'm away fromfrom  laptop or PC, and writing notes on my phone is okay until I forget where I've put them. Here's how I've set up Netlify CMS with my Hugo site, so I can create drafts or full posts anywhere I have a web browser and internet connection.
 
 {{< /lead >}}
 
