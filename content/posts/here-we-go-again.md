@@ -23,4 +23,4 @@ So, this time I've chosen Hugo, and Netlify to build my personal site. Before to
 
 Netlify has this great feature of branch deploys, where pushing a commit to your GitHub repository will trigger a build of the site, and the branch instance is available as a subdomain of your existing site. For example, pushing to a branch named `develop` would create a site at `develop.example.com` if I have the domain `example.com`. 
 
-### TODO: Explain issue with pricing and Basic Auth
+### TODO: Talk about pricing and external auth
