@@ -52,7 +52,7 @@ package main
 func main() {
   image, _ := ioutil.ReadFile("image.jpg")
 
-  options := Options{
+  options := resize.Options{
     ResizeStrategy: resize.Scale
     Width: 300
     Height: 300
@@ -125,10 +125,10 @@ func Buffer(img []byte, optionSetter Option) ([]byte, error) {
 
 So there has been some refactoring happen here - what's the difference? 
 
-- We still have an options struct, but notice it's now unexported. 
-- We also still have the Buffer function, with a slightly different signature.
-- There is a new type named `Option` which is `func(options *options)`.
-- There are three new functions that return the type `Option`.
+* We still have an options struct, but notice it's now unexported. 
+* We also still have the Buffer function, with a slightly different signature.
+* There is a new type named `Option` which is `func(options *options)`.
+* There are three new functions that return the type `Option`.
 
 Users can now make use of the package like so:
 
