@@ -9,7 +9,7 @@
 	status = 404
 
 [build.environment]
-    HUGO_VERSION = "0.71.1"
+    HUGO_VERSION = "0.158.0"
 
 [context.branch-deploy]
     command = 'hugo --gc --minify -b https://$BRANCH.dawsona.co.uk' 
