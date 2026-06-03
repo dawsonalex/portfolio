@@ -1,0 +1,5 @@
+{{ if gt (len .Inner) 0 }}
+    <p class="post-lead">
+        {{ .Inner | markdownify }}
+    </p>
+{{ end }}

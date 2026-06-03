@@ -1,0 +1,79 @@
+/**
+* Styles specific to Mardown output.
+* @author Alex Dawson
+*/
+
+/** || text */
+blockquote,
+blockquote > * {
+    font-family: 'ubuntu-light', monospace, sans-serif;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 2.25rem;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+blockquote::before {
+    content: url(../svg/open-quote.svg);
+    left: -50%;
+}
+
+blockquote::after {
+    content: url(../svg/close-quote.svg);
+    right: -50%;
+}
+
+blockquote::before,
+blockquote::after {
+    display: inline-block;
+    position: relative;
+    color: var(--font-family-secondary);
+}
+
+ul {
+    color: var(--font-family);
+}
+
+/* || Code Highlight */
+
+.highlight > pre {
+    font-size: 18px;
+    padding: 1rem;
+    border-left: 8px solid var(--color-primary);
+    overflow-x: auto;
+    background: #272822;
+}
+
+pre > code {
+    background: #272822;
+    padding: initial;
+}
+
+/* Individual code point */
+
+code {
+    font-family: 'ubuntu', monospace, sans-serif;
+    font-weight: var(--fw-regular);
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--font-family);
+    background: #828282;
+    padding: 0.15rem 0.3rem;
+    border-radius: 4px;
+
+}
+
+/** || media */
+
+/* base image style*/
+img {
+    width: 100%;
+}
+
+/* Hugo figure shortcode style */
+figcaption > h4 {
+    margin: .5rem 0;
+}
+

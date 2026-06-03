@@ -1,0 +1,10 @@
+{{- define "main" -}}
+<main class="center-column">
+    <section id="posts">
+        <h2 class="light section-heading">Posts - #{{ .Title }}</h2>
+    </section>
+    {{ range .Pages }}
+        {{ .Render "li" }}
+    {{ end }}
+</main>
+{{- end -}}

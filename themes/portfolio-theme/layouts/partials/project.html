@@ -1,0 +1,15 @@
+<div class="project">
+    <h2>{{ .name }}</h2>
+    {{ with .description }}<p>{{ . }}</p>{{ end }}
+    {{ with .language }}
+    <span class="language-label">
+        <span class="language-color" style="background: {{ .colour }}"></span>
+        <span class="language-text">{{ .name }}</span>
+    </span>
+    {{ end }}
+    <ul class="project-links">
+        {{ range .links }}
+        <li><a href="{{ .URL }}">{{ .text }}</a></li>
+        {{ end }}
+    </ul>
+</div>

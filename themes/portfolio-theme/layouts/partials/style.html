@@ -1,0 +1,9 @@
+{{ if eq hugo.Environment "development" }}
+<link rel="stylesheet" href="{{"css/style.css" | absURL}}" />
+<link rel="stylesheet" href="{{"css/md.css" | absURL}}" />
+{{ else }}
+<style>
+    {{ readFile "themes/portfolio-theme/static/css/style.css" | safeCSS }}
+    {{ readFile "themes/portfolio-theme/static/css/md.css" | safeCSS }}
+</style>
+{{ end }}

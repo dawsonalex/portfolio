@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{{- $language_code := site.Language.Locale | default "en-us" -}}
+<html lang="{{$language_code}}"{{- with hugo.Data.i18n }}{{- if in .rtl.rtl $language_code }} dir="rtl"{{- end }}{{- end -}}>
+    {{ partial "head" . }}
+    <body>
+    {{- partial "header" . -}}
+    {{- block "main" . -}}{{- end -}}
+    {{ partial "common_js" . }}
+    </body>
+</html>

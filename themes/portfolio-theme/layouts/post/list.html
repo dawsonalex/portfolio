@@ -1,0 +1,14 @@
+{{- define "main" -}}
+    <main class="center-column">
+        <section id="posts">
+            <h2 class="light section-heading">All Posts</h2>
+        </section>
+        {{ if gt (len .Pages) 0 }}
+            {{ range .Pages }}
+                {{ .Render "li" }}
+            {{ end }}
+        {{ else }}
+            {{ partial "emptyPlaceHolder" "No Posts to Show :(" }}
+        {{ end }}
+    </main>
+{{- end -}}

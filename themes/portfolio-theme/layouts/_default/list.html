@@ -1,0 +1,7 @@
+{{- define "main" -}}
+    <main class="center-column">
+        {{ range .Pages }}
+            {{ .Render "li" }}
+        {{ end }}
+    </main>
+{{- end -}}

@@ -1,0 +1,9 @@
+{{- /* Partial allowss for post summaries to be on one line, making it easier to read when using :empty css */ -}}
+{{ $pages := first 10 .Site.RegularPages }}
+{{ if gt (len $pages) 0 }}
+    {{ range $pages }}
+        {{ .Render "li" }}
+    {{ end }}
+{{ else }}
+    {{ partial "emptyPlaceHolder" "No Posts to Show :(" }}
+{{ end }}

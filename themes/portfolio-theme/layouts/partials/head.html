@@ -1,0 +1,31 @@
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	{{ with $.Site.Params.description }}
+	<meta name="description" content="{{.}}">
+	{{ else }}
+	<meta name="description" content="A site built with Hugo">
+	{{ end }}
+
+	{{/* RSS Feed link generation */}}
+	{{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+
+	<link rel="preload" href="{{"fonts/lora/lora-v16-latin-regular.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/lora/lora-v16-latin-700.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/lora/lora-v16-latin-italic.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/ubuntu/ubuntu-v14-latin-300.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/ubuntu/ubuntu-v14-latin-regular.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/ubuntu/ubuntu-v14-latin-italic.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/ubuntu/ubuntu-v14-latin-500.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="{{"fonts/ubuntu/ubuntu-v14-latin-700.woff2" | absURL}}" as="font" type="font/woff2" crossorigin>
+	
+	<link rel="stylesheet" href="{{"css/fonts.css" | absURL}}" />
+	{{ partialCached "style.html" . "style" }}
+	{{ partial "custom_head" . }}
+	{{ partial "custom_favicon" . }}
+
+  <title>{{ if not .IsHome }}{{ .Title }} / {{ end }}{{ site.Title }}</title>
+</head>

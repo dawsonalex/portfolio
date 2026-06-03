@@ -1,0 +1,7 @@
+{{- /* Get an estimate for time to read a post based on word count and a reading speed */ -}}
+{{ $words_per_minute := 250 }}
+{{ $word_count := $words_per_minute }}
+{{ if gt .FuzzyWordCount $words_per_minute }}
+    {{ $word_count = .FuzzyWordCount }}
+{{end }}
+{{ return div $word_count $words_per_minute }}
