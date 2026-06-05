@@ -112,3 +112,4 @@ dist
 # Local Netlify folder
 .netlify
 /public/
+/.hugo_build.lock
