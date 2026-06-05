@@ -1,6 +1,6 @@
 baseURL = "https://dawsona.co.uk"
 locale = "en-us"
-title = "Alex Dawson - Portfolio"
+title = "ad's blog"
 
 contentDir = "content"
 
