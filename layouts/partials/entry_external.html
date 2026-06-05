@@ -1,0 +1,37 @@
+{{- /* One stream entry for an external/remote cross-post (a data entry, not a page).
+       Param: the entry dict from data/external.toml. Site identity (glyph, accent,
+       domain) comes from data/sites.toml via the entry's `site` key. */ -}}
+{{- $e := . -}}
+{{- $site := index hugo.Data.sites $e.site -}}
+{{- if $site -}}
+<article class="entry">
+    <div class="eline">
+        <span class="gray">{{ (time.AsTime $e.date) | time.Format "2 Jan 2006" }}</span>
+        <span class="badge ext">&#8599; remote</span>
+        <span style="flex:1"></span>
+        {{ partial "tags_inline" $e.tags }}
+    </div>
+    <a class="extcard kind-{{ $site.kind }}" href="{{ $e.href }}" target="_blank" rel="noopener noreferrer">
+        <div class="ext-head">
+            <span class="ext-site"><span class="ext-glyph">{{ $site.glyph }}</span>{{ $site.name }}</span>
+            <span class="ext-purpose">{{ $site.purpose }}</span>
+            <span class="ext-domain">{{ $site.domain }}<span class="ext-arrow">&#8599;</span></span>
+        </div>
+        {{ if eq $site.kind "audio" }}
+        <div class="ext-media wave-wrap">{{ partial "waveform" . }}<span class="wave-play">&#9654;</span></div>
+        {{ else if $e.image }}
+        <div class="ext-media"><img src="{{ $e.image }}" alt="{{ $e.alt | default $e.title }}" referrerpolicy="no-referrer"></div>
+        {{ else }}
+        <div class="ext-media no-img"><span class="ext-fallback">{{ $site.glyph }}</span></div>
+        {{ end }}
+        <div class="ext-body">
+            <h3 class="ext-title">{{ $e.title }}</h3>
+            {{ with $e.excerpt }}<p class="ext-ex">{{ . }}</p>{{ end }}
+            {{ with $e.meta }}<div class="ext-meta">
+                {{ range . }}<span class="ext-chip"><b>{{ index . 0 }}</b>{{ index . 1 }}</span>{{ end }}
+            </div>{{ end }}
+        </div>
+        <div class="ext-foot">&#8599; opens <b>{{ $site.domain }}</b> in a new tab</div>
+    </a>
+</article>
+{{- end -}}

@@ -1,0 +1,10 @@
+{{- define "main" -}}
+<div class="page wide route">
+    <div class="prompt" style="margin-bottom:6px"><span class="pfx">~/projects </span><span class="gray">$ </span><span class="cmd">ls -la</span></div>
+    {{ $projects := hugo.Data.projects }}
+    {{ with site.Params.projectsURL }}{{ with resources.GetRemote . }}{{ $projects = . | transform.Unmarshal }}{{ end }}{{ end }}
+    {{ $projects = sort $projects "year" "desc" }}
+    {{ range $projects }}{{ partial "project" . }}{{ end }}
+    {{ with .Content }}<div class="about" style="margin-top:24px">{{ . }}</div>{{ end }}
+</div>
+{{- end -}}

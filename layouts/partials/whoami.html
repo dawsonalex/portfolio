@@ -1,0 +1,14 @@
+{{- /* whoami header for the home page, driven by site params. */ -}}
+{{- $author := site.Params.author | default site.Title -}}
+{{- $role := site.Params.role | default site.Params.subtitle -}}
+<div>
+    <div class="prompt"><span class="pfx">~/ </span><span class="gray">$ </span><span class="cmd">whoami</span></div>
+    <div class="hname">{{ lower $author }}</div>
+    <div class="hrole">{{ $role }}{{ with site.Params.location }} &middot; {{ . }}{{ end }}</div>
+    {{ with site.Params.bio }}<p class="hbio">// {{ . }}<span class="cursor"></span></p>{{ end }}
+    {{ with site.Params.contact_links }}
+    <div class="links">
+        {{ range . }}<a href="{{ .link }}"{{ with .handle }} title="{{ . }}"{{ end }}>{{ .label }}</a>{{ end }}
+    </div>
+    {{ end }}
+</div>

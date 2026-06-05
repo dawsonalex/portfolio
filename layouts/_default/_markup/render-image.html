@@ -1,0 +1,20 @@
+{{- /* Markdown image -> faux "window" frame with title bar (dots + filename +
+       dimensions) and a "# fig — caption" figcaption built from the alt text.
+       Dimensions are read from a page-bundle resource when available. */ -}}
+{{- $alt := .PlainText | default .Text -}}
+{{- $res := "" -}}
+{{- if not (urls.Parse .Destination).IsAbs -}}
+    {{- with .Page.Resources.GetMatch .Destination -}}{{- $res = . -}}{{- end -}}
+{{- end -}}
+<figure class="figure">
+    <div class="imgframe">
+        <div class="if-bar">
+            <span class="dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></span>
+            <span>{{ path.Base .Destination }}</span>
+            <span class="sp"></span>
+            {{ with $res }}<span>{{ .Width }}&times;{{ .Height }}</span>{{ end }}
+        </div>
+        <div class="if-img"><img src="{{ .Destination | safeURL }}" alt="{{ $alt }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy"></div>
+    </div>
+    {{ with .Text }}<figcaption class="figcap"><b>fig &mdash; </b>{{ . }}</figcaption>{{ end }}
+</figure>

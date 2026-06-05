@@ -1,0 +1,13 @@
+{{- /* Top tab bar: brand + writing/projects/about tabs + ⌘K hint / mobile menu.
+       "writing.md" is active for the home, post, posts-list and tag pages. */ -}}
+{{- $p := . -}}
+{{- $isWriting := or $p.IsHome (eq $p.Type "post") (eq $p.Section "posts") (eq $p.Type "tags") (eq $p.Kind "term") (eq $p.Kind "taxonomy") -}}
+{{- $isProjects := eq $p.Type "projects" -}}
+<div class="tabbar">
+    <a class="brand" href="{{ "/" | relURL }}"><span class="blk"></span>{{ site.Params.brand | default "~" }}</a>
+    <a class="tab{{ if $isWriting }} active{{ end }}" href="{{ "/" | relURL }}"><span class="ic">&#9670;</span>writing.md</a>
+    <a class="tab{{ if $isProjects }} active{{ end }}" href="{{ "/projects/" | relURL }}"><span class="ic">&#9670;</span>projects.md</a>
+    <div class="spacer"></div>
+    <div class="cmdhint" data-cmd-open role="button" tabindex="0" title="jump to… (⌘K)"><kbd>&#8984;K</kbd>jump to&#8230;</div>
+    <button class="menubtn" type="button" data-cmd-open>menu<span class="ham">&#9776;</span></button>
+</div>

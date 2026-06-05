@@ -1,10 +1,15 @@
 {{- define "main" -}}
-<main class="center-column">
-    <section id="posts">
-        <h2 class="light section-heading">Posts - #{{ .Title }}</h2>
-    </section>
-    {{ range .Pages }}
-        {{ .Render "li" }}
-    {{ end }}
-</main>
+<div class="page route">
+    <a class="backlink" href="{{ "/" | relURL }}">:e ../writing.md</a>
+    <div class="prompt" style="margin-bottom:8px"><span class="pfx">~/writing </span><span class="gray">$ </span><span class="cmd">grep -r </span><span class="orange">'#{{ .Title }}'</span></div>
+    {{ $extMatches := 0 }}
+    {{ with hugo.Data.external }}{{ range .entry }}{{ if in (apply .tags "urlize" ".") ($.Title | urlize) }}{{ $extMatches = add $extMatches 1 }}{{ end }}{{ end }}{{ end }}
+    {{ $count := add (len .Pages) $extMatches }}
+    <div class="taghead">
+        <div class="big">#{{ .Title }}</div>
+        <div class="cnt">{{ $count }} {{ cond (eq $count 1) "entry" "entries" }} tagged</div>
+    </div>
+    <hr class="rule">
+    {{ partial "stream" (dict "pages" .Pages "tag" .Title) }}
+</div>
 {{- end -}}

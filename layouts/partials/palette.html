@@ -1,0 +1,11 @@
+{{- $pages := slice (dict "label" "Home" "url" ("/" | relURL) "hint" "writing.md" "icon" "~") (dict "label" "Projects" "url" ("/projects/" | relURL) "hint" "projects.md" "icon" "▸") -}}
+{{- $posts := slice -}}
+{{- range where (where site.RegularPages "Type" "post") "Params.kind" "!=" "note" -}}
+{{- $posts = $posts | append (dict "label" .Title "url" .RelPermalink "hint" (printf "%d min" .ReadingTime) "icon" "#") -}}
+{{- end -}}
+{{- $data := dict "current" .RelPermalink "pages" $pages "posts" $posts -}}
+{{- /* Command-palette data, emitted at build time. shell.js builds the modal /
+       sheet from this and navigates by real URL. safeJS stops html/template from
+       re-encoding the already-JSON string inside <script type="application/json">. */ -}}
+<script type="application/json" id="palette-data">{{ $data | jsonify | safeJS }}</script>
+<div id="cmd-root"></div>

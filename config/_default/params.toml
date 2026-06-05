@@ -1,15 +1,20 @@
-# Site author
+# Site author / identity (drives the whoami header + status bar)
 author = "Alex Dawson"
-subtitle = "Full Stack Developer"
+subtitle = "(M|Bre)aking Things"
+#role = "Full Stack Developer"        # shown in the whoami header, before the location
+location = "Nottinghamshire"
+brand = "ad"                          # short initials in the tab-bar brand block
+bio = "Software developer."
 
-description="A collection of posts and project pieces from software engineer Alex Dawson"
+description = "A collection of posts and project pieces from software engineer Alex Dawson"
 
-# list of links for external site accounts
+# Contact / social links. Rendered as bracketed [label] links in the header.
+# `label` is the visible text; `link` the href; `handle` an optional title/tooltip.
 contact_links = [
-    {icon = "twitter", link = "https://twitter.com/_dawson_alex"},
-    {icon = "github", link = "https://github.com/dawsonalex"},
-    {icon = "linkedin", link = "https://linkedin.com/in/dawsonal"},
-    {icon = "rss", link = "/index.xml"}
+    {label = "github", link = "https://github.com/dawsonalex", handle = "dawsonalex"},
+    {label = "twitter", link = "https://twitter.com/_dawson_alex", handle = "@_dawson_alex"},
+    {label = "linkedin", link = "https://linkedin.com/in/dawsonal", handle = "in/dawsonal"},
+    {label = "rss", link = "/index.xml", handle = "feed"},
 ]
 
 # URL to get project JSON on build

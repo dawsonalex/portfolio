@@ -3,3 +3,7 @@ locale = "en-us"
 title = "Alex Dawson - Portfolio"
 
 contentDir = "content"
+
+[markup]
+  [markup.highlight]
+    noClasses = false

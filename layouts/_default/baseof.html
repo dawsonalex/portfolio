@@ -2,9 +2,15 @@
 {{- $language_code := site.Language.Locale | default "en-us" -}}
 <html lang="{{$language_code}}"{{- with hugo.Data.i18n }}{{- if in .rtl.rtl $language_code }} dir="rtl"{{- end }}{{- end -}}>
     {{ partial "head" . }}
-    <body>
-    {{- partial "header" . -}}
-    {{- block "main" . -}}{{- end -}}
+    <body class="gv" data-mode="dark">
+    {{/* Restore the saved theme before first paint to avoid a flash of the wrong mode. */}}
+    <script>(function(){try{var m=localStorage.getItem('gv-mode');if(m==='light'||m==='dark'){document.body.setAttribute('data-mode',m);}}catch(e){}})();</script>
+    {{- partial "tabbar" . -}}
+    <div class="main" id="main">
+        {{- block "main" . -}}{{- end -}}
+    </div>
+    {{- partial "statusbar" . -}}
+    {{- partial "palette" . -}}
     {{ partial "common_js" . }}
     </body>
 </html>

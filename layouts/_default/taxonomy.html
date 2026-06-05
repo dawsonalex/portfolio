@@ -1,0 +1,10 @@
+{{- /* Taxonomy index (e.g. /tags/): a grep listing of every term. */ -}}
+{{- define "main" -}}
+<div class="page route">
+    <a class="backlink" href="{{ "/" | relURL }}">:e ../writing.md</a>
+    <div class="prompt" style="margin-bottom:14px"><span class="pfx">~/writing </span><span class="gray">$ </span><span class="cmd">ls </span><span class="orange">{{ .Title | lower }}/</span></div>
+    <div class="tags" style="gap:12px 16px;font-size:15px">
+        {{ range .Pages }}<a class="tagx" href="{{ .RelPermalink }}">#{{ .Title }} <span class="gray">({{ len .Pages }})</span></a>{{ end }}
+    </div>
+</div>
+{{- end -}}

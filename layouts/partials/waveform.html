@@ -1,0 +1,6 @@
+{{- /* Deterministic faux audio waveform (56 bars) for audio external cards. */ -}}
+<div class="wave">
+{{- range $i := seq 0 55 -}}
+<span style="height:{{ add 18 (mod (mul $i 37) 78) }}%"></span>
+{{- end -}}
+</div>

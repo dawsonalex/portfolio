@@ -1,0 +1,8 @@
+{{- /* Render a slice of tag strings as the .tags chip row. Param: the tags slice. */ -}}
+{{- with . -}}
+<div class="tags">
+    {{- range . -}}
+    <a class="tagx" href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+    {{- end -}}
+</div>
+{{- end -}}
