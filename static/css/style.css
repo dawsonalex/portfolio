@@ -112,7 +112,7 @@ body{background:#1d2021}
 .readmore{color:var(--aqua);margin-top:14px;display:inline-block}
 .readmore:hover{text-decoration:underline}
 .notecard{background:var(--bg1);border-left:3px solid var(--aqua);border-radius:0 6px 6px 0;
-  padding:15px 18px;margin-top:12px;max-width:80ch}
+  padding:15px 18px;margin-top:12px;}
 .notecard p{margin:0 0 8px}.notecard p:last-child{margin:0}
 .notecard p::before{content:"# ";color:var(--gray)}
 code{color:var(--orange);background:rgba(128,128,128,.16);padding:0 4px;border-radius:3px}
@@ -127,7 +127,7 @@ code{color:var(--orange);background:rgba(128,128,128,.16);padding:0 4px;border-r
 /* ---- external / remote site cards ---- */
 .badge.ext{color:var(--blue)}
 .extcard{display:block;border:1px solid var(--bg2);border-left:3px solid var(--site);border-radius:0 8px 8px 0;
-  overflow:hidden;margin-top:12px;max-width:80ch;background:var(--bg);transition:transform .14s,box-shadow .14s,border-color .14s}
+  overflow:hidden;margin-top:12px;background:var(--bg);transition:transform .14s,box-shadow .14s,border-color .14s}
 .extcard:hover{transform:translateX(2px);box-shadow:-3px 6px 0 color-mix(in oklab,var(--site) 30%,transparent)}
 /* per-site accents (mode aware) */
 .kind-astro{--site:#6fa8d0}
