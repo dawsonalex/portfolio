@@ -47,3 +47,12 @@
 .figcap{font-size:12.5px;color:var(--gray);margin-top:10px}
 .figcap::before{content:"# ";color:var(--gray)}
 .figcap b{color:var(--aqua);font-weight:400}
+
+/* quote shortcode */
+.quote-card{background:var(--bg1);border-radius:6px;
+  padding:15px 18px;max-width:80ch}
+.quote-card .qc-text{font-style:italic;font-size:16.5px;line-height:1.85;margin:0;color:var(--dim)}
+.quote-card .qc-text::before{content:'\201C'}
+.quote-card .qc-text::after{content:'\201D'}
+.quote-card .qc-author{display:block;color:var(--gray);font-size:13px;margin-top:10px}
+.quote-card .qc-author::before{content:"— "}

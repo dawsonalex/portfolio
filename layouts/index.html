@@ -2,7 +2,9 @@
 <div class="page route">
     {{ partial "whoami" . }}
     <hr class="rule">
-    {{ $pages := where site.RegularPages "Section" "posts" }}
+    {{ $notes := where site.RegularPages "Section" "notes" }}
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ $pages := $notes | append $posts }}
     {{ $extCount := 0 }}{{ with hugo.Data.external }}{{ $extCount = len .entry }}{{ end }}
     {{ $total := add (len $pages) $extCount }}
     <div class="seclabel">// <b>writing</b> &mdash; {{ $total }} {{ cond (eq $total 1) "entry" "entries" }}</div>
