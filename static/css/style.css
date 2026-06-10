@@ -108,7 +108,7 @@ body{background:#1d2021}
   display:inline-block;transition:color .12s}
 .ptitle:hover{color:var(--green)}
 .ptitle .hash{color:var(--green)}
-.excerpt{color:var(--dim);margin-top:10px;line-height:1.7;max-width:74ch}
+.excerpt{color:var(--dim);margin-top:10px;line-height:1.7;}
 .readmore{color:var(--aqua);margin-top:14px;display:inline-block}
 .readmore:hover{text-decoration:underline}
 .notecard{background:var(--bg1);border-left:3px solid var(--aqua);border-radius:0 6px 6px 0;

@@ -12,7 +12,7 @@
         {{- $match := true -}}
         {{- if $tag -}}{{- $match = in (apply .tags "urlize" ".") ($tag | urlize) -}}{{- end -}}
         {{- if $match -}}
-            {{- $items = $items | append (dict "date" (time.AsTime .date) "type" "external" "ext" .) -}}
+            {{- $items = $items | append (dict "date" (partialCached "remote_date.html" . .href) "type" "external" "ext" .) -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
