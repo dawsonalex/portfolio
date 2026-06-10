@@ -2,7 +2,6 @@
     {
         "name" : "Spellbook",
         "description" : "A tool for learning Magic the Gathering interactively.",
-        "year" : "2026",
         "language" : {
             "name" : "TypeScript",
             "colour" : "#3178c6"
@@ -21,7 +20,6 @@
     {
         "name" : "image-rest",
         "description" : "A REST API and file server for sending images.",
-        "year" : "2020",
         "language" : {
             "name" : "Go",
             "colour" : "#00ADD8"
@@ -36,7 +34,6 @@
     {
         "name" : "arbi",
         "description" : "A Blockly based visual programming environment for Arduino.",
-        "year" : "2019",
         "language" : {
             "name" : "JavaScript",
             "colour" : "#f1e05a"
@@ -55,7 +52,6 @@
     {
         "name" : "polymer-flip-card",
         "description" : "A Lit-Element component based on code-it notes by Dan Harding.",
-        "year" : "2019",
         "language" : {
             "name" : "JavaScript",
             "colour" : "#f1e05a"

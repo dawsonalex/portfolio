@@ -4,7 +4,11 @@ subtitle = "(M|Bre)aking Things"
 #role = "Full Stack Developer"        # shown in the whoami header, before the location
 location = "Nottinghamshire"
 brand = "ad"                          # short initials in the tab-bar brand block
-bio = "Software developer."
+bio = [
+    "Software developer.",
+    "Enjoy perusing my unfinished projects.",
+    "Help! I'm a robot being forced to write witty phrases whenever someone loads the page!"
+]
 
 description = "A collection of posts and project pieces from software engineer Alex Dawson"
 
@@ -12,6 +16,7 @@ description = "A collection of posts and project pieces from software engineer A
 # `label` is the visible text; `link` the href; `handle` an optional title/tooltip.
 contact_links = [
     {label = "github", link = "https://github.com/dawsonalex", handle = "dawsonalex"},
+    {label = "gitlab", link = "https://gitlab.com/dawsonalex", handle = "dawsonalex"},
     {label = "rss", link = "/index.xml", handle = "feed"},
 ]
 
