@@ -63,7 +63,8 @@ main() {
 
   # Build the site
   echo "Building the site..."
-  hugo --gc --minify
+  BASE_URL="${CF_PAGES_URL:-https://portfolio.alexander-dawson.workers.dev/}"
+  hugo --gc --minify --baseURL "$BASE_URL"
 
 }
 
