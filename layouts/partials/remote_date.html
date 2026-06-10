@@ -1,0 +1,20 @@
+{{- /* Returns the publication time.Time for an external entry.
+       Tries article:published_time then og:updated_time from the remote page;
+       falls back to the entry's data-file date.
+       Param: the entry dict from data/external.toml. */ -}}
+{{- $date := time.AsTime .date -}}
+{{- $opts := dict "headers" (dict "User-Agent" "facebookexternalhit/1.1") -}}
+{{- with resources.GetRemote .href $opts -}}
+  {{- $html    := .Content -}}
+  {{- $dateStr := "" -}}
+  {{- range findRE `(?i)<meta[^>]*article:published_time['"][^>]*/?>` $html 1 -}}
+    {{- $dateStr = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+  {{- end -}}
+  {{- if not $dateStr -}}
+    {{- range findRE `(?i)<meta[^>]*og:updated_time['"][^>]*/?>` $html 1 -}}
+      {{- $dateStr = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $dateStr -}}{{- $date = time.AsTime . -}}{{- end -}}
+{{- end -}}
+{{- return $date -}}

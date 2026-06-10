@@ -1,0 +1,90 @@
+{{- /* One stream entry for an external/remote cross-post (a data entry, not a page).
+       Param: the entry dict from data/external.toml. Site identity (glyph, accent,
+       domain) comes from data/sites.toml via the entry's `site` key. */ -}}
+{{- $e := . -}}
+{{- $site := index hugo.Data.sites $e.site -}}
+{{- if $site -}}
+
+{{- $title   := "" -}}
+{{- $excerpt := "" -}}
+{{- $image   := "" -}}
+{{- $date    := partialCached "remote_date.html" $e $e.href -}}
+{{- $fetched := false -}}
+{{- $opts := dict "headers" (dict "User-Agent" "facebookexternalhit/1.1") -}}
+{{- with resources.GetRemote $e.href $opts -}}
+  {{- $fetched = true -}}
+  {{- $html := .Content -}}
+
+  {{- range findRE `(?i)<meta[^>]*og:title['"][^>]*/?>` $html 1 -}}
+    {{- $title = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- range findRE `(?i)<meta[^>]*twitter:title['"][^>]*/?>` $html 1 -}}
+      {{- $title = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- range findRE `(?i)<meta[^>]*og:description['"][^>]*/?>` $html 1 -}}
+    {{- $excerpt = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+  {{- end -}}
+  {{- if not $excerpt -}}
+    {{- range findRE `(?i)<meta[^>]*name=["']description["'][^>]*/?>` $html 1 -}}
+      {{- $excerpt = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if ne $site.kind "audio" -}}
+    {{- range findRE `(?i)<meta[^>]*og:image['"][^>]*/?>` $html 1 -}}
+      {{- $image = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+    {{- end -}}
+    {{- if not $image -}}
+      {{- range findRE `(?i)<meta[^>]*twitter:image['"][^>]*/?>` $html 1 -}}
+        {{- $image = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $fetched -}}
+  {{- warnf "entry_external: could not fetch %s" $e.href -}}
+{{- else -}}
+  {{- if not $title   -}}{{- warnf "entry_external: no og:title or twitter:title found at %s"           $e.href -}}{{- end -}}
+  {{- if not $excerpt -}}{{- warnf "entry_external: no og:description or meta description found at %s" $e.href -}}{{- end -}}
+  {{- if and (ne $site.kind "audio") (not $image) -}}{{- warnf "entry_external: no og:image or twitter:image found at %s" $e.href -}}{{- end -}}
+{{- end -}}
+
+{{- $title   = or $title   $e.title   -}}
+{{- $excerpt = or $excerpt $e.excerpt -}}
+{{- $image   = or $image   $e.image   -}}
+
+<article class="entry">
+    <div class="eline">
+        <span class="gray">{{ $date | time.Format "2 Jan 2006" }}</span>
+        <span class="badge ext">&#8599; remote</span>
+        <span style="flex:1"></span>
+        {{ partial "tags_inline" $e.tags }}
+    </div>
+    <a class="extcard kind-{{ $site.kind }}" href="{{ $e.href }}" target="_blank" rel="noopener noreferrer">
+        <div class="ext-head">
+            <span class="ext-site"><span class="ext-glyph">{{ $site.glyph }}</span>{{ $site.name }}</span>
+            <span class="ext-purpose">{{ $site.purpose }}</span>
+            <span class="ext-domain">{{ $site.domain }}<span class="ext-arrow">&#8599;</span></span>
+        </div>
+        {{ if eq $site.kind "audio" }}
+        <div class="ext-media wave-wrap">{{ partial "waveform" . }}<span class="wave-play">&#9654;</span></div>
+        {{ else if $image }}
+        <div class="ext-media"><img src="{{ $image }}" alt="{{ $e.alt | default $title }}" referrerpolicy="no-referrer"></div>
+        {{ else }}
+        <div class="ext-media no-img"><span class="ext-fallback">{{ $site.glyph }}</span></div>
+        {{ end }}
+        <div class="ext-body">
+            <h3 class="ext-title">{{ $title }}</h3>
+            {{ with $excerpt }}<p class="ext-ex">{{ . }}</p>{{ end }}
+            {{ with $e.meta }}<div class="ext-meta">
+                {{ range . }}<span class="ext-chip"><b>{{ index . 0 }}</b>{{ index . 1 }}</span>{{ end }}
+            </div>{{ end }}
+        </div>
+        <div class="ext-foot">&#8599; opens <b>{{ $site.domain }}</b> in a new tab</div>
+    </a>
+</article>
+{{- end -}}

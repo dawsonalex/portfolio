@@ -1,0 +1,71 @@
+{{- /* whoami header for the home page, driven by site params. */ -}}
+{{- $author := site.Params.author | default site.Title -}}
+{{- $role := site.Params.role | default site.Params.subtitle -}}
+<div>
+    <div class="prompt"><span class="pfx">~/ </span><span class="gray">$ </span><span class="cmd">whoami</span></div>
+    <div class="hname">{{ lower $author }}</div>
+    <div class="hrole">{{ $role }}{{ with site.Params.location }} &middot; {{ . }}{{ end }}</div>
+    {{ with site.Params.bio }}
+    <p class="hbio">
+        <span class="bio-ghost" id="bio-ghost" aria-hidden="true"></span>
+        <span class="bio-live"><span id="bio-text"></span><span class="cursor typing" id="bio-cursor"></span></span>
+    </p>
+    <script>
+    (function(){
+        let bios = {{ . | jsonify | safeJS }};
+        if (!Array.isArray(bios)) bios = [bios];
+        let raw = bios[Math.floor(Math.random() * bios.length)];
+
+        let ghost = document.getElementById('bio-ghost');
+        let el    = document.getElementById('bio-text');
+        let cur   = document.getElementById('bio-cursor');
+
+        // Word-wrap so every visual line starts with '// '.
+        // Canvas measurement accounts for the actual container width and font.
+        let prefix = '// ';
+        let cs = window.getComputedStyle(ghost.parentElement);
+        let containerWidth = ghost.parentElement.getBoundingClientRect().width;
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
+        ctx.font = cs.fontSize + ' ' + cs.fontFamily;
+        let availWidth = Math.max(
+            containerWidth - ctx.measureText(prefix).width,
+            ctx.measureText('W').width
+        );
+
+        let words = raw.split(' ');
+        let lines = [];
+        let line = '';
+        for (let w = 0; w < words.length; w++) {
+            let test = line ? line + ' ' + words[w] : words[w];
+            if (line && ctx.measureText(test).width > availWidth) {
+                lines.push(prefix + line);
+                line = words[w];
+            } else {
+                line = test;
+            }
+        }
+        if (line) lines.push(prefix + line);
+
+        let text = lines.join('\n');
+        ghost.textContent = text;
+
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                el.textContent += text[i++];
+                setTimeout(type, 45);
+            } else {
+                cur.classList.remove('typing');
+            }
+        }
+        type();
+    })();
+    </script>
+    {{ end }}
+    {{ with site.Params.contact_links }}
+    <div class="links">
+        {{ range . }}<a href="{{ .link }}"{{ with .handle }} title="{{ . }}"{{ end }}>{{ .label }}</a>{{ end }}
+    </div>
+    {{ end }}
+</div>

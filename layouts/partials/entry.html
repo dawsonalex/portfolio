@@ -1,0 +1,30 @@
+{{- /* One stream entry for a Hugo page: a short note (shown in full) or a post
+       teaser (links to the full page). Param: the page. */ -}}
+{{- $p := . -}}
+{{- $isNote := eq $p.Section "notes" -}}
+<article class="entry">
+    <div class="eline">
+        <span class="gray">{{ $p.Date | time.Format "2 Jan 2006" }}</span>
+        {{ if $isNote }}<span class="badge note">note</span>
+        {{ else }}<span class="badge post">post</span><span class="gray">{{ $p.ReadingTime }} min</span>{{ end }}
+        <span style="flex:1"></span>
+        {{ partial "tags_inline" $p.Params.tags }}
+    </div>
+    {{ if $isNote }}
+    <div class="notecard">
+        {{ $p.Content }}
+        {{ with $p.Params.link_url }}
+        <a class="linkcard" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+            {{ $p.Params.link_title }}<span class="lh">({{ $p.Params.link_host }})</span>
+        </a>
+        {{ end }}
+    </div>
+    {{ else }}
+    {{ $ex := or $p.Params.excerpt $p.Params.summary "" }}
+    {{ if not $ex }}{{ $ex = $p.Summary | plainify | htmlUnescape }}{{ end }}
+    {{ $ex = trim (replaceRE "\\s+" " " $ex) " " | truncate 240 }}
+    <a class="ptitle" href="{{ $p.RelPermalink }}"><span class="hash">## </span>{{ $p.Title }}</a>
+    <p class="excerpt">{{ $ex }}</p>
+    <a class="readmore" href="{{ $p.RelPermalink }}">&#x2514;&#x2500; cat {{ path.Base $p.RelPermalink }}.md &#x2192;</a>
+    {{ end }}
+</article>

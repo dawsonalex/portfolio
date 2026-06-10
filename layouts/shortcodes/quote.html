@@ -1,0 +1,5 @@
+{{ $author := .Get "author" }}
+<div class="quote-card">
+  <p class="qc-text">{{ .Inner | strings.TrimSpace }}</p>
+  {{ with $author }}<span class="qc-author">{{ . }}</span>{{ end }}
+</div>

@@ -1,0 +1,6 @@
+{{- $lang := .Type | default "text" -}}
+{{- $highlighted := transform.Highlight .Inner $lang "" -}}
+<div class="codeblock">
+    <div class="cb-bar"><span class="green">&#9679;</span>{{ $lang }}{{ with .Attributes.title }} &middot; {{ . }}{{ end }}</div>
+    {{ $highlighted }}
+</div>

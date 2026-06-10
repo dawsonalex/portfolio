@@ -1,15 +1,29 @@
 {{- define "main" -}}
-<main  class="center-column">
-    <h1 class="post-title">{{ .Title }}</h1>
-    <span class="post-author-label">{{ with .Params.Author }}{{ . }}&nbsp;-&nbsp;{{ end }}{{ .Date | time.Format "Monday, Jan 2, 2006" }}</span>
-    <div class="post-tags">
-        {{ with .Params.tags  }}
-            {{ range . }}
-                <a class="tag-label" href="{{ "tags/" | absURL }}{{ . | urlize }}">#{{ . }}</a>
-            {{ end }}
-        {{ end }}
+<div class="page route">
+    <a class="backlink" href="{{ "/" | relURL }}">:e ../writing.md</a>
+    <div class="posthead">
+        <h1><span class="hash"># </span>{{ .Title }}</h1>
+        <div class="eline" style="margin-top:6px">
+            <span class="gray">{{ .Date | time.Format "2 Jan 2006" }}</span>
+            <span class="badge post">post</span>
+            <span class="gray">{{ .ReadingTime }} min read</span>
+            {{ partial "tags_inline" .Params.tags }}
+        </div>
     </div>
-    <div class="post-header-divider"></div>
-    {{ .Content }}
-</main>
+    <hr class="rule">
+    <div class="prose">{{ .Content }}</div>
+    {{- /* prev / next among real posts (notes excluded), site collection is date-desc */ -}}
+    {{ $posts := where (where site.RegularPages "Section" "posts") "Params.kind" "!=" "note" }}
+    {{ $idx := -1 }}
+    {{ range $i, $p := $posts }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}{{ end }}
+    {{ $newer := false }}{{ $older := false }}
+    {{ if ge $idx 0 }}
+        {{ if gt $idx 0 }}{{ $newer = index $posts (sub $idx 1) }}{{ end }}
+        {{ if lt $idx (sub (len $posts) 1) }}{{ $older = index $posts (add $idx 1) }}{{ end }}
+    {{ end }}
+    <div class="postnav">
+        {{ if $older }}<a href="{{ $older.RelPermalink }}">&#8592; older<span class="pn-title">{{ $older.Title }}</span></a>{{ else }}<span></span>{{ end }}
+        {{ if $newer }}<a href="{{ $newer.RelPermalink }}" style="text-align:right">newer &#8594;<span class="pn-title">{{ $newer.Title }}</span></a>{{ else }}<span></span>{{ end }}
+    </div>
+</div>
 {{- end -}}

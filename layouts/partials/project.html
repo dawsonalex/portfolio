@@ -1,15 +1,25 @@
-<div class="project">
-    <h2>{{ .name }}</h2>
-    {{ with .description }}<p>{{ . }}</p>{{ end }}
-    {{ with .language }}
-    <span class="language-label">
-        <span class="language-color" style="background: {{ .colour }}"></span>
-        <span class="language-text">{{ .name }}</span>
-    </span>
+{{- /* One project row (.proj). Param: a project dict from data/projects.json.
+       The title links to the demo (preferred) or the repo; the [repo]/[demo]
+       links below are real links too. .proj is a <div> so the title <a> does not
+       nest inside another anchor. */ -}}
+{{- $demo := "" }}{{- $repo := "" }}{{- $first := "" -}}
+{{- range .links -}}
+    {{- $t := .text | lower -}}
+    {{- if not $first }}{{ $first = .URL }}{{ end -}}
+    {{- if and (not $demo) (in (slice "demo" "live" "site" "writeup") $t) }}{{ $demo = .URL }}{{ end -}}
+    {{- if and (not $repo) (in (slice "repo" "code" "source") $t) }}{{ $repo = .URL }}{{ end -}}
+{{- end -}}
+{{- $href := or $demo $repo $first -}}
+<div class="proj">
+    <div class="proj-top">
+        {{ if $href }}<a class="proj-name" href="{{ $href }}" target="_blank">{{ .name }}</a>{{ else }}<span class="proj-name">{{ .name }}</span>{{ end }}
+        {{ with .language }}<span class="proj-lang"><span class="dot" style="background:{{ .colour }}"></span>{{ .name }}</span>{{ end }}
+        {{ with .year }}<span class="proj-year">{{ . }}</span>{{ end }}
+    </div>
+    {{ with .description }}<div class="proj-desc">{{ . }}</div>{{ end }}
+    {{ with .links }}
+    <div class="proj-links">
+        {{ range . }}<a href="{{ .URL }}">{{ .text }}</a>{{ end }}
+    </div>
     {{ end }}
-    <ul class="project-links">
-        {{ range .links }}
-        <li><a href="{{ .URL }}">{{ .text }}</a></li>
-        {{ end }}
-    </ul>
 </div>

@@ -1,7 +1,8 @@
 {{- define "main" -}}
-<main class="text-center center-column">
-	<h1 class="text-left">Oops!</h1>
-	<h2 class="light text-left">I can't find the page you're looking for. </h4>
-	<h3 class="text-left">Error: <strong>404</strong></h3>
-</main>
+<div class="page route">
+    <div class="prompt"><span class="pfx">~/ </span><span class="gray">$ </span><span class="cmd">cd .{{ .RelPermalink }}</span></div>
+    <div class="posthead" style="margin-top:14px"><h1><span class="hash"># </span>404</h1></div>
+    <p class="hbio" style="margin-top:10px">// no such file or directory — the page you're looking for isn't here.<span class="cursor"></span></p>
+    <div class="links" style="margin-top:20px"><a href="{{ "/" | relURL }}">cd ~/writing.md</a></div>
+</div>
 {{- end -}}

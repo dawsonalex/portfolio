@@ -1,0 +1,23 @@
+{{- /* Merged writing stream: Hugo posts/notes + external data entries, sorted by
+       date desc. Param: dict { "pages": <page slice>, "tag": "<tag>"|"" }.
+       When "tag" is set, external entries are filtered to that tag. */ -}}
+{{- $pages := .pages -}}
+{{- $tag := .tag -}}
+{{- $items := slice -}}
+{{- range $pages -}}
+    {{- $items = $items | append (dict "date" .Date "type" "page" "page" .) -}}
+{{- end -}}
+{{- with hugo.Data.external -}}
+    {{- range .entry -}}
+        {{- $match := true -}}
+        {{- if $tag -}}{{- $match = in (apply .tags "urlize" ".") ($tag | urlize) -}}{{- end -}}
+        {{- if $match -}}
+            {{- $items = $items | append (dict "date" (partialCached "remote_date.html" . .href) "type" "external" "ext" .) -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- $items = sort $items "date" "desc" -}}
+{{- range $items -}}
+    {{- if eq .type "external" -}}{{- partial "entry_external.html" .ext -}}
+    {{- else -}}{{- partial "entry.html" .page -}}{{- end -}}
+{{- end -}}

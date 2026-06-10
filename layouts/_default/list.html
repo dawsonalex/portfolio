@@ -1,7 +1,7 @@
 {{- define "main" -}}
-    <main class="center-column">
-        {{ range .Pages }}
-            {{ .Render "li" }}
-        {{ end }}
-    </main>
+<div class="page route">
+    <div class="prompt" style="margin-bottom:8px"><span class="pfx">~/ </span><span class="gray">$ </span><span class="cmd">ls {{ .Title | lower }}</span></div>
+    {{ with .Content }}<div class="prose" style="margin-bottom:18px">{{ . }}</div>{{ end }}
+    {{ range .Pages }}{{ partial "entry.html" . }}{{ end }}
+</div>
 {{- end -}}

@@ -1,13 +1,13 @@
 {{- define "main" -}}
-	<main class="center-column">
-		<section id="posts">
-			<h2 class="light section-heading">Latest Posts</h2>
-			{{ partial "RenderFirstTenPosts" . }}
-		</section>
-		
-		<section id="projects">
-			<h2 class="light section-heading">Projects</h2>
-			{{ partial "RenderTopProjects" . }}
-		</section>
-	</main>
+<div class="page route">
+    {{ partial "whoami" . }}
+    <hr class="rule">
+    {{ $notes := where site.RegularPages "Section" "notes" }}
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ $pages := $notes | append $posts }}
+    {{ $extCount := 0 }}{{ with hugo.Data.external }}{{ $extCount = len .entry }}{{ end }}
+    {{ $total := add (len $pages) $extCount }}
+    <div class="seclabel">// <b>writing</b> &mdash; {{ $total }} {{ cond (eq $total 1) "entry" "entries" }}</div>
+    {{ partial "stream" (dict "pages" $pages "tag" "") }}
+</div>
 {{- end -}}

@@ -1,0 +1,25 @@
+# External sites you also run. Cross-posts in the writing stream (data/external.toml)
+# adopt the matching site's identity here — its glyph and accent colour.
+#
+# Each key (e.g. [adastra]) is a site id referenced by external entries' `site` field.
+#   name    — display name shown in the card header
+#   domain  — bare domain, shown right-aligned + in the footer
+#   kind    — "astro" (photo media) or "audio" (waveform media). Drives the accent.
+#   purpose — short descriptor shown next to the name (e.g. "astrophotography")
+#   glyph   — a single Unicode glyph used as the site mark / image fallback
+#
+# This file is intentionally empty — add sites when you have them. Example:
+#
+ [adastra]
+   name = "Ad Astra"
+   domain = "adastra.photos"
+   kind = "astro"
+   purpose = "astrophotography"
+   glyph = "✦"
+#
+# [longwave]
+#   name = "Longwave"
+#   domain = "longwave.fm"
+#   kind = "audio"
+#   purpose = "field recordings"
+#   glyph = "○"

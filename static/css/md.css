@@ -1,79 +1,58 @@
-/**
-* Styles specific to Mardown output.
-* @author Alex Dawson
-*/
+/* Markdown / prose styles for the post body (.prose) and the render-hook
+   chrome (code-block "window" + image frame). Part of the gruvbox redesign;
+   palette tokens + inline `code` come from style.css. */
 
-/** || text */
-blockquote,
-blockquote > * {
-    font-family: 'ubuntu-light', monospace, sans-serif;
-    font-style: italic;
-    font-size: 2rem;
-    line-height: 2.25rem;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-}
+.prose{max-width:74ch}
+.prose p{line-height:1.85;margin:0 0 1.2em;font-size:15.5px}
+.prose .post-lead{color:var(--fg);font-size:16.5px}
+.prose a{color:var(--blue)}
+.prose a:hover{color:var(--aqua);text-decoration:underline}
+.prose h2{color:var(--green);font-size:20px;font-weight:700;margin:1.9em 0 .6em}
+.prose h2::before{content:"## ";color:var(--gray)}
+.prose h3{color:var(--green);font-size:17px;font-weight:700;margin:1.6em 0 .5em}
+.prose h3::before{content:"### ";color:var(--gray)}
+.prose blockquote{margin:1.5em 0;padding:10px 0 10px 18px;border-left:3px solid var(--yellow);color:var(--yellow)}
+.prose blockquote p{margin:0}
+.prose blockquote::before{content:"> ";color:var(--gray)}
+.prose blockquote cite{display:block;color:var(--gray);font-size:12px;margin-top:8px;font-style:normal}
+.prose ul{list-style:none;padding:0;margin:1.2em 0}
+.prose ol{padding-left:22px;margin:1.2em 0}
+.prose li{padding-left:22px;position:relative;margin:.45em 0;line-height:1.7}
+.prose ul li::before{content:"- ";position:absolute;left:0;color:var(--orange)}
+.prose ol{list-style:decimal}
+.prose ol li{padding-left:0;position:static}
+.prose ol li::before{content:none}
+.prose img{max-width:100%;height:auto}
+.prose hr{border:0;border-top:1px dashed var(--bg2);margin:1.8em 0}
 
-blockquote::before {
-    content: url(../svg/open-quote.svg);
-    left: -50%;
-}
+/* fenced code block -> faux editor window */
+.codeblock{background:var(--bgh);border:1px solid var(--bg2);border-radius:8px;margin:1.5em 0;overflow:hidden}
+.codeblock .cb-bar{font-size:12px;color:var(--gray);padding:9px 14px;border-bottom:1px solid var(--bg2);
+  display:flex;gap:8px;align-items:center}
+.codeblock pre{margin:0;padding:15px 16px;font-size:14px;line-height:1.75;overflow-x:auto}
+.codeblock pre code{background:none;color:inherit;padding:0;border-radius:0}
+.codeblock .highlight{margin:0}
+.codeblock .chroma{background:transparent;color:#ebdbb2}
 
-blockquote::after {
-    content: url(../svg/close-quote.svg);
-    right: -50%;
-}
+/* image -> faux "window" frame */
+.figure{margin:1.9em 0}
+.imgframe{border:1px solid var(--bg2);border-radius:8px;overflow:hidden;background:var(--bgh)}
+.if-bar{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--bg2);
+  font-size:12px;color:var(--gray)}
+.if-bar .dots{display:flex;gap:6px}
+.if-bar .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.if-bar .sp{flex:1}
+.if-img{position:relative;display:block;line-height:0}
+.if-img img{display:block;width:100%;height:auto}
+.figcap{font-size:12.5px;color:var(--gray);margin-top:10px}
+.figcap::before{content:"# ";color:var(--gray)}
+.figcap b{color:var(--aqua);font-weight:400}
 
-blockquote::before,
-blockquote::after {
-    display: inline-block;
-    position: relative;
-    color: var(--font-family-secondary);
-}
-
-ul {
-    color: var(--font-family);
-}
-
-/* || Code Highlight */
-
-.highlight > pre {
-    font-size: 18px;
-    padding: 1rem;
-    border-left: 8px solid var(--color-primary);
-    overflow-x: auto;
-    background: #272822;
-}
-
-pre > code {
-    background: #272822;
-    padding: initial;
-}
-
-/* Individual code point */
-
-code {
-    font-family: 'ubuntu', monospace, sans-serif;
-    font-weight: var(--fw-regular);
-    font-size: 18px;
-    line-height: 24px;
-    color: var(--font-family);
-    background: #828282;
-    padding: 0.15rem 0.3rem;
-    border-radius: 4px;
-
-}
-
-/** || media */
-
-/* base image style*/
-img {
-    width: 100%;
-}
-
-/* Hugo figure shortcode style */
-figcaption > h4 {
-    margin: .5rem 0;
-}
-
+/* quote shortcode */
+.quote-card{background:var(--bg1);border-radius:6px;
+  padding:15px 18px;max-width:80ch}
+.quote-card .qc-text{font-style:italic;font-size:16.5px;line-height:1.85;margin:0;color:var(--dim)}
+.quote-card .qc-text::before{content:'\201C'}
+.quote-card .qc-text::after{content:'\201D'}
+.quote-card .qc-author{display:block;color:var(--gray);font-size:13px;margin-top:10px}
+.quote-card .qc-author::before{content:"— "}

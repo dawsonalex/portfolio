@@ -1,0 +1,30 @@
+# Cross-posts from other sites you run, interleaved into the writing stream by date.
+# These are links + display metadata, NOT Hugo pages — they never appear under /posts/.
+#
+# Each [[entry]] needs:
+#   site    — a site id defined in data/sites.toml (provides glyph + accent + domain)
+#   date    — YYYY-MM-DD; used to sort the entry into the stream
+#   title   — card title
+#   href    — full URL the card links to (opens in a new tab)
+#   excerpt — one or two lines of body copy
+#   tags    — list of tag strings (link to /tags/<tag>)
+#   image   — (astro sites) path/URL to a cover image; omit for the glyph fallback
+#   alt     — alt text for the image
+#   meta    — list of [key, value] chips shown under the excerpt
+#
+# This file is intentionally empty — add entries when you have them. Example:
+#
+ [[entry]]
+   site = "adastra"
+   date = "2026-06-02"
+   title = "Moon"
+   href = "https://adastra.photos/captures/moon/"
+   alt = "The moon at around 98% luminance"
+   excerpt = "A single handheld shot of the moon at ~98% luminance, straight through the eyepiece."
+   tags = ["astro", "moon"]
+#   meta = [["optics", "SkyWatcher 150P"], ["exp", "1/85s"], ["sky", "Bortle 6"]]
+
+[[entry]]
+  site = "adastra"
+  date = "2026-06-03"
+  href = "https://adastra.photos/captures/cygnus-widgets-farm/"

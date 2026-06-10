@@ -1,3 +1,11 @@
 {{- define "main" -}}
-<h1>single page</h1>>
+<div class="page route">
+    <a class="backlink" href="{{ "/" | relURL }}">:e ../writing.md</a>
+    <div class="posthead">
+        <h1><span class="hash"># </span>{{ .Title }}</h1>
+        {{ if not .Date.IsZero }}<div class="eline" style="margin-top:6px"><span class="gray">{{ .Date | time.Format "2 Jan 2006" }}</span>{{ partial "tags_inline" .Params.tags }}</div>{{ end }}
+    </div>
+    <hr class="rule">
+    <div class="prose">{{ .Content }}</div>
+</div>
 {{- end -}}

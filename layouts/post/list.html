@@ -1,14 +1,13 @@
 {{- define "main" -}}
-    <main class="center-column">
-        <section id="posts">
-            <h2 class="light section-heading">All Posts</h2>
-        </section>
-        {{ if gt (len .Pages) 0 }}
-            {{ range .Pages }}
-                {{ .Render "li" }}
-            {{ end }}
-        {{ else }}
-            {{ partial "emptyPlaceHolder" "No Posts to Show :(" }}
-        {{ end }}
-    </main>
+<div class="page route">
+    <a class="backlink" href="{{ "/" | relURL }}">:e ../writing.md</a>
+    <div class="prompt"><span class="pfx">~/writing </span><span class="gray">$ </span><span class="cmd">ls -la</span></div>
+    <div class="seclabel" style="margin:10px 0 4px"><span class="gray">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "entry" "entries" }}, newest first</span></div>
+    <hr class="rule">
+    {{ if gt (len .Pages) 0 }}
+        {{ range .Pages }}{{ partial "entry.html" . }}{{ end }}
+    {{ else }}
+        {{ partial "emptyPlaceHolder" "No Posts to Show :(" }}
+    {{ end }}
+</div>
 {{- end -}}

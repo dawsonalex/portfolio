@@ -1,0 +1,34 @@
+{{- /* Bottom status bar: buffer path + switcher, git branch, word count (posts),
+       encoding, theme toggle, clock. Theme label + clock are filled by shell.js. */ -}}
+{{- $p := . -}}
+{{- $path := "~/" -}}
+{{- $isPost := eq $p.Type "post" -}}
+{{- if $p.IsHome -}}{{ $path = "~/writing.md" }}
+{{- else if $isPost -}}{{ $path = printf "~/writing/%s.md" (path.Base $p.RelPermalink) }}
+{{- else if eq $p.Type "projects" -}}{{ $path = "~/projects.md" }}
+{{- else if or (eq $p.Kind "term") (eq $p.Type "tags") -}}{{ $path = printf "~/writing/grep #%s" $p.Title }}
+{{- else if eq $p.Section "posts" -}}{{ $path = "~/writing.md" }}
+{{- end -}}
+{{- $on := dict
+    "home" (or $p.IsHome $isPost (eq $p.Section "posts") (eq $p.Kind "term") (eq $p.Type "tags"))
+    "projects" (eq $p.Type "projects") -}}
+<div class="status">
+    <div class="path-wrap" data-path-wrap>
+        <button class="seg pathbtn" type="button" data-path-btn title="switch buffer">
+            <span class="pb-caret">&#9652;</span>{{ $path }}
+        </button>
+        <div class="path-menu" data-path-menu hidden>
+            <a class="pm-item{{ if index $on "home" }} on{{ end }}" href="{{ "/" | relURL }}">
+                <span class="pm-ic">~</span><span class="pm-path">~/writing.md</span>{{ if index $on "home" }}<span class="pm-cur">&#9679;</span>{{ end }}</a>
+            <a class="pm-item{{ if index $on "projects" }} on{{ end }}" href="{{ "/projects/" | relURL }}">
+                <span class="pm-ic">&#9656;</span><span class="pm-path">~/projects.md</span>{{ if index $on "projects" }}<span class="pm-cur">&#9679;</span>{{ end }}</a>
+        </div>
+    </div>
+    <div class="seg soft hidemob">&#9095; main</div>
+    <div class="sp"></div>
+    {{ if $isPost }}<div class="seg soft hidemob">{{ $p.WordCount }} words</div>{{ end }}
+    <div class="seg soft">utf-8</div>
+    <div class="seg soft">md</div>
+    <button class="tbtn" type="button" data-theme-toggle title="toggle theme (⌘\)"><span data-theme-label>&#9680; dark</span></button>
+    <div class="seg mode" data-clock>--:--</div>
+</div>
