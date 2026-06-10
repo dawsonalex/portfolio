@@ -1,6 +1,7 @@
 # Wrangler config taken from https://gohugo.io/host-and-deploy/host-on-cloudflare/
-name = "adastra-site"
-compatibility_date = "2025-07-31"
+name = "portfolio"
+compatibility_date = "2026-06-10"
+compatibility_flags = ["nodejs_compat"]
 
 [build]
 command = "chmod a+x build.sh && ./build.sh"
@@ -8,3 +9,6 @@ command = "chmod a+x build.sh && ./build.sh"
 [assets]
 directory = "./public"
 not_found_handling = "404-page"
+
+[observability]
+enabled = true
