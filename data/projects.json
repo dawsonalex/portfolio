@@ -1,5 +1,24 @@
 [
     {
+        "name" : "Spellbook",
+        "description" : "A tool for learning Magic the Gathering interactively.",
+        "year" : "2026",
+        "language" : {
+            "name" : "TypeScript",
+            "colour" : "#3178c6"
+        },
+        "links" : [
+            {
+                "text" : "demo",
+                "URL" : "https://spellbook-bgn.pages.dev"
+            },
+            {
+                "text" : "repo",
+                "URL" : "https://github.com/dawsonalex/spellbook"
+            }
+        ]
+    },
+    {
         "name" : "image-rest",
         "description" : "A REST API and file server for sending images.",
         "year" : "2020",
@@ -30,21 +49,6 @@
             {
                 "text" : "demo",
                 "URL" : "https://dawsonalex.github.io/arbi/"
-            }
-        ]
-    },
-    {
-        "name" : "portfolio-theme",
-        "description" : "A Hugo theme for my portfolio.",
-        "year" : "2023",
-        "language" : {
-            "name" : "CSS",
-            "colour" : "#563d7c"
-        },
-        "links" : [
-            {
-                "text" : "repo",
-                "URL" : "https://github.com/dawsonalex/portfolio-theme"
             }
         ]
     },

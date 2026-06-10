@@ -12,8 +12,6 @@ description = "A collection of posts and project pieces from software engineer A
 # `label` is the visible text; `link` the href; `handle` an optional title/tooltip.
 contact_links = [
     {label = "github", link = "https://github.com/dawsonalex", handle = "dawsonalex"},
-    {label = "twitter", link = "https://twitter.com/_dawson_alex", handle = "@_dawson_alex"},
-    {label = "linkedin", link = "https://linkedin.com/in/dawsonal", handle = "in/dawsonal"},
     {label = "rss", link = "/index.xml", handle = "feed"},
 ]
 
