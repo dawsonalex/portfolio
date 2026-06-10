@@ -14,13 +14,17 @@
 #
 # This file is intentionally empty — add entries when you have them. Example:
 #
-# [[entry]]
-#   site = "adastra"
-#   date = "2026-06-02"
-#   title = "Moon"
-#   href = "https://adastra.photos/captures/moon/"
-#   image = "/img/external/moon.jpg"
-#   alt = "The moon at around 98% luminance"
-#   excerpt = "A single handheld shot of the moon at ~98% luminance, straight through the eyepiece."
-#   tags = ["astro", "moon"]
+ [[entry]]
+   site = "adastra"
+   date = "2026-06-02"
+   title = "Moon"
+   href = "https://adastra.photos/captures/moon/"
+   alt = "The moon at around 98% luminance"
+   excerpt = "A single handheld shot of the moon at ~98% luminance, straight through the eyepiece."
+   tags = ["astro", "moon"]
 #   meta = [["optics", "SkyWatcher 150P"], ["exp", "1/85s"], ["sky", "Bortle 6"]]
+
+[[entry]]
+  site = "adastra"
+  date = "2026-06-03"
+  href = "https://adastra.photos/captures/cygnus-widgets-farm/"

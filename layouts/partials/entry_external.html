@@ -4,6 +4,58 @@
 {{- $e := . -}}
 {{- $site := index hugo.Data.sites $e.site -}}
 {{- if $site -}}
+
+{{- $title   := "" -}}
+{{- $excerpt := "" -}}
+{{- $image   := "" -}}
+{{- $fetched := false -}}
+{{- $opts := dict "headers" (dict "User-Agent" "facebookexternalhit/1.1") -}}
+{{- with resources.GetRemote $e.href $opts -}}
+  {{- $fetched = true -}}
+  {{- $html := .Content -}}
+
+  {{- range findRE `(?i)<meta[^>]*og:title['"][^>]*/?>` $html 1 -}}
+    {{- $title = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- range findRE `(?i)<meta[^>]*twitter:title['"][^>]*/?>` $html 1 -}}
+      {{- $title = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- range findRE `(?i)<meta[^>]*og:description['"][^>]*/?>` $html 1 -}}
+    {{- $excerpt = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+  {{- end -}}
+  {{- if not $excerpt -}}
+    {{- range findRE `(?i)<meta[^>]*name=["']description["'][^>]*/?>` $html 1 -}}
+      {{- $excerpt = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" | htmlUnescape -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if ne $site.kind "audio" -}}
+    {{- range findRE `(?i)<meta[^>]*og:image['"][^>]*/?>` $html 1 -}}
+      {{- $image = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+    {{- end -}}
+    {{- if not $image -}}
+      {{- range findRE `(?i)<meta[^>]*twitter:image['"][^>]*/?>` $html 1 -}}
+        {{- $image = . | replaceRE `(?i).*\bcontent=["']([^"']*)["'].*` "$1" -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $fetched -}}
+  {{- warnf "entry_external: could not fetch %s" $e.href -}}
+{{- else -}}
+  {{- if not $title   -}}{{- warnf "entry_external: no og:title or twitter:title found at %s"           $e.href -}}{{- end -}}
+  {{- if not $excerpt -}}{{- warnf "entry_external: no og:description or meta description found at %s" $e.href -}}{{- end -}}
+  {{- if and (ne $site.kind "audio") (not $image) -}}{{- warnf "entry_external: no og:image or twitter:image found at %s" $e.href -}}{{- end -}}
+{{- end -}}
+
+{{- $title   = or $title   $e.title   -}}
+{{- $excerpt = or $excerpt $e.excerpt -}}
+{{- $image   = or $image   $e.image   -}}
+
 <article class="entry">
     <div class="eline">
         <span class="gray">{{ (time.AsTime $e.date) | time.Format "2 Jan 2006" }}</span>
@@ -19,14 +71,14 @@
         </div>
         {{ if eq $site.kind "audio" }}
         <div class="ext-media wave-wrap">{{ partial "waveform" . }}<span class="wave-play">&#9654;</span></div>
-        {{ else if $e.image }}
-        <div class="ext-media"><img src="{{ $e.image }}" alt="{{ $e.alt | default $e.title }}" referrerpolicy="no-referrer"></div>
+        {{ else if $image }}
+        <div class="ext-media"><img src="{{ $image }}" alt="{{ $e.alt | default $title }}" referrerpolicy="no-referrer"></div>
         {{ else }}
         <div class="ext-media no-img"><span class="ext-fallback">{{ $site.glyph }}</span></div>
         {{ end }}
         <div class="ext-body">
-            <h3 class="ext-title">{{ $e.title }}</h3>
-            {{ with $e.excerpt }}<p class="ext-ex">{{ . }}</p>{{ end }}
+            <h3 class="ext-title">{{ $title }}</h3>
+            {{ with $excerpt }}<p class="ext-ex">{{ . }}</p>{{ end }}
             {{ with $e.meta }}<div class="ext-meta">
                 {{ range . }}<span class="ext-chip"><b>{{ index . 0 }}</b>{{ index . 1 }}</span>{{ end }}
             </div>{{ end }}
